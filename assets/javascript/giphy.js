@@ -31,7 +31,8 @@ $("#addnewAnimal").on("click", function() {
 
 //button click function to add button, show rating & 10 giphy
 //ajax call to get animals
-$(".animal").on("click", function() {
+$(document).on("click", ".animal", function() {
+//$(".animal").on("click", function() {
     var animal = $(this).attr("data-name");
     console.log(animal);
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10";
@@ -42,10 +43,13 @@ $(".animal").on("click", function() {
       })
       .done(function(response) {
         console.log('I was inside ajax');
+        event.preventDefault();
+        $("#animals").empty();
         console.log(response);
         var results = response.data;
 
         for (var i = 0; i < results.length; i++) {
+          
           var gifDiv = $("<div class='item'>");
 
           var rating = results[i].rating;
@@ -53,32 +57,43 @@ $(".animal").on("click", function() {
           var p = $("<p>").text("Rating: " + rating);
 
           var animalImage = $("<img>");
-          animalImage.attr("src", results[i].images.fixed_height.url);
+          animalImage.attr("src", results[i].images.fixed_height_still.url);
           animalImage.addClass('gif');
           animalImage.attr("data-state", 'still');
+          animalImage.attr("data-still",results[i].images.fixed_height_still.url);
+          console.log(results[i].images.fixed_height_still.url);
+          
+          animalImage.attr("data-animate", results[i].images.fixed_height.url);
 
-          gifDiv.append(p);
+          gifDiv.append(p);results[i].images.fixed_height_still.url
           gifDiv.append(animalImage);
 
           $("#animals").prepend(gifDiv);
         }
         renderButtons();
       });
+      
   });
 
-  $(".gif").on("click", function() {
+  //button click to enable/disable still/animation
+  $(document).on("click", ".gif", function() {
+  //$(".gif").on("click", function() {
     
     var state = $(this).attr("data-state");
     console.log(state);
     if(state === 'still')
     {
-      $(this).attr("src", $(this).attr("data-animate"));
+      var linkst = $(this).attr("data-animate")
+      $(this).attr("src", linkst);
+      console.log(linkst);
       $(this).attr("data-state", 'animate');
       console.log($(this).attr("data-state"));
     }
     else if(state === 'animate')
     {
-      $(this).attr("src", $(this).attr("data-still"));
+      var linkan = $(this).attr("data-still");
+      $(this).attr("src", linkan);
+      console.log(linkan);
       $(this).attr("data-state", 'still');
       console.log($(this).attr("data-state"));
     }

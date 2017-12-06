@@ -1,1 +1,8 @@
-.animal{margin: 10px;}
+.animal{margin: 5px;}
+
+img{
+	float: left;
+    width:30%;
+    height: 25%;
+	margin: 1.66%
+}
