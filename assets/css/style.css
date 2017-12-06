@@ -1,8 +1,11 @@
 .animal{margin: 5px;}
 
-img{
+body{font-family: 'Muli', sans-serif;}
+
+.item{
 	float: left;
-    width:30%;
-    height: 25%;
-	margin: 1.66%
+    width: 30%;
+	margin: 1.66%;
+	
+	
 }

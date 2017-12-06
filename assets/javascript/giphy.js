@@ -1,4 +1,6 @@
-var animalArr = ['Cats', 'Dogs', 'Giraffe'];
+
+var animalArr = ['Cats', 'Dogs', 'Giraffe', 'Zebra', 'Elephant', 'Goat', 'Cow', 'Sheep', 'Tiger', 'Lion', 'Leopard', 'Falcon', 'Sparrow', 'Parrot',
+'Wolf', 'Squirrel', 'Pig', 'Deer', 'Horse','Hippopatamus', 'Turtle', 'Rhinoceros','Crows', 'Otter', 'Camel'];
 
 renderButtons();
   // Function for displaying animal data
@@ -32,7 +34,7 @@ $("#addnewAnimal").on("click", function() {
 //button click function to add button, show rating & 10 giphy
 //ajax call to get animals
 $(document).on("click", ".animal", function() {
-//$(".animal").on("click", function() {
+
     var animal = $(this).attr("data-name");
     console.log(animal);
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10";
@@ -50,7 +52,7 @@ $(document).on("click", ".animal", function() {
 
         for (var i = 0; i < results.length; i++) {
           
-          var gifDiv = $("<div class='item'>");
+          var gifDiv = $("<li class='item'>");
 
           var rating = results[i].rating;
 
@@ -65,9 +67,10 @@ $(document).on("click", ".animal", function() {
           
           animalImage.attr("data-animate", results[i].images.fixed_height.url);
 
-          gifDiv.append(p);results[i].images.fixed_height_still.url
+          gifDiv.append(p);
+          
           gifDiv.append(animalImage);
-
+         
           $("#animals").prepend(gifDiv);
         }
         renderButtons();
@@ -77,7 +80,7 @@ $(document).on("click", ".animal", function() {
 
   //button click to enable/disable still/animation
   $(document).on("click", ".gif", function() {
-  //$(".gif").on("click", function() {
+  
     
     var state = $(this).attr("data-state");
     console.log(state);
