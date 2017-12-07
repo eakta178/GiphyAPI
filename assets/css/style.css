@@ -1,6 +1,6 @@
 .animal{margin: 5px;}
 
-body{font-family: 'Muli', sans-serif;}
+body{font-family: 'Muli', sans-serif; color: white; background-color: black;}
 
 .item{
 	float: left;
