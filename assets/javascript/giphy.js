@@ -27,6 +27,7 @@ $("#addnewAnimal").on("click", function() {
           animalArr.push(newAnimal);
           console.log(animalArr);
           renderButtons();
+          $('#animal-input').val('');
         
   });
 
